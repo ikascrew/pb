@@ -1,0 +1,47 @@
+syntax = "proto3";
+
+package pb;
+service Ikascrew {
+  rpc Sync (SyncRequest) returns (SyncReply) {}
+  rpc Switch (SwitchRequest) returns (SwitchReply) {}
+  rpc Effect (EffectRequest) returns (EffectReply) {}
+  rpc PutVolume (VolumeMessage) returns (VolumeReply) {}
+}
+
+message SyncRequest {
+}
+
+message SyncReply {
+  int64  source = 1;
+  string type = 2;
+  int64  project = 3;
+}
+
+message EffectRequest {
+  int64  id = 1;
+  string type = 2;
+  string effect = 3;
+}
+
+message EffectReply {
+  bool success = 1;
+}
+
+message SwitchRequest {
+  string type = 2;
+}
+
+message SwitchReply {
+  bool success = 1;
+}
+
+message VolumeMessage {
+  int64 index = 1;
+  double value = 2;
+}
+
+message VolumeReply {
+  bool success = 1;
+  repeated double valueList = 2;
+}
+
